@@ -1,16 +1,54 @@
 <template>
-  <img alt="Vue logo" src="https://static.wixstatic.com/media/9726ef_c411753c1d2f444f9d63f94c85737f55~mv2.png/v1/fill/w_169,h_170,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/9726ef_c411753c1d2f444f9d63f94c85737f55~mv2.png">
-  <HelloWorld msg="Hola ing, bienvenido"/>
+  <div>
+    <!-- Componente del formulario -->
+    <formIndex @form-enviado="mostrarAlerta" />
+
+    <!-- Componente de notificación, visible solo si `mostrarNotificacion` es verdadero -->
+    <alertCompo
+      v-if="mostrarNotificacion" 
+      :name="formData.name" 
+      :lastName="formData.lastName" 
+      :phoneNumber="formData.phoneNumber" 
+      :address="formData.address" 
+      @cerrar="ocultarAlerta" 
+    />
+    <calendarDay />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import formIndex from './components/formIndex.vue';
+import alertCompo from './components/alertCompo.vue';
+import calendarDay from './components/calendarDay.vue';
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    formIndex,
+    alertCompo,
+    calendarDay
+  },
+  data() {
+    return {
+      mostrarNotificacion: false, // Controla si la alerta está visible
+      formData: {
+        name: "",
+        lastName: "",
+        phoneNumber: "",
+        address: "",
+      },
+    };
+  },
+  methods: {
+    mostrarAlerta(datos) {
+      this.formData = datos; // Guarda los datos del formulario
+      this.mostrarNotificacion = true; // Muestra la notificación
+    },
+    ocultarAlerta() {
+      this.mostrarNotificacion = false; // Oculta la notificación
+    },
+  },
 }
 </script>
 
@@ -26,5 +64,9 @@ export default {
   color: #fff;
   margin-top: 60px;
   background-color: #2c3e50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 </style>
