@@ -13,6 +13,7 @@
       @cerrar="ocultarAlerta" 
     />
     <calendarDay />
+    <calculatorOperator />
   </div>
 </template>
 
@@ -20,6 +21,7 @@
 import formIndex from './components/formIndex.vue';
 import alertCompo from './components/alertCompo.vue';
 import calendarDay from './components/calendarDay.vue';
+import calculatorOperator from './components/calculatorOperator.vue';
 
 
 export default {
@@ -27,7 +29,8 @@ export default {
   components: {
     formIndex,
     alertCompo,
-    calendarDay
+    calendarDay,
+    calculatorOperator
   },
   data() {
     return {
