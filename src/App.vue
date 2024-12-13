@@ -14,6 +14,21 @@
     />
     <calendarDay />
     <calculatorOperator />
+    <h1>Buscador de Pokémon</h1>
+    <!-- Componente de búsqueda -->
+    <FindPokemon @pokemon-encontrado="mostrarPokemon" />
+
+    <!-- Mostramos los detalles del Pokémon -->
+    <div v-if="pokemon">
+      <h2>{{ pokemon.name }}</h2>
+      <p><strong>Altura:</strong> {{ pokemon.height }}</p>
+      <p><strong>Peso:</strong> {{ pokemon.weight }}</p>
+      <p><strong>Habilidades:</strong> {{ abilities }}</p>
+      <img :src="pokemon.sprites.front_default" :alt="pokemon.name" />
+    </div>
+    <div v-else-if="error" style="color: red;">
+      {{ error }}
+    </div>
   </div>
 </template>
 
@@ -22,6 +37,7 @@ import formIndex from './components/formIndex.vue';
 import alertCompo from './components/alertCompo.vue';
 import calendarDay from './components/calendarDay.vue';
 import calculatorOperator from './components/calculatorOperator.vue';
+import FindPokemon from './components/findPokemon.vue';
 
 
 export default {
@@ -30,7 +46,8 @@ export default {
     formIndex,
     alertCompo,
     calendarDay,
-    calculatorOperator
+    calculatorOperator,
+    FindPokemon
   },
   data() {
     return {
